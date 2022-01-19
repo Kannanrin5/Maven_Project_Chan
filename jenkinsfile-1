@@ -1,30 +1,24 @@
-pipeline {
+pipeline{
+
     agent any
-    
+
     stages{
         stage("Build"){
             steps{
-                echo "project bulid in progress ..."
-                build job:"Maven_Package"
+                 echo "Project build in progress...."
+                 build job: 'package-war'
             }
-        
-                      }
-        
-                }
-                
-    stages{
-        stage("deploy to tomcat"){
-            steps{
-                
-                timeout(time:5,unit:'MINUTES'){
-                    input message:'proceed or not'
-                
-                }
-               echo "project bulid in progress ..."
-                build job:"Maven_Package" 
-            }
-        
-                      }
-        
-                }
         }
+        stage("Deploy to tomcat"){
+            steps{
+                timeout(time:5, unit:'MINUTES'){
+                    input message: 'Approve the deployment to PROCEED'
+                }
+                 echo "Deploying...."
+                 build job: 'deploy-war-to-tomcat'
+
+            }
+        }
+    }
+    
+}
