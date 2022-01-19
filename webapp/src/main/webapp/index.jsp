@@ -1,1 +1,1 @@
-<h1 style="color:Blue">Welcome to my custom Page Automated Deployment!!!</h1>
+<h1 style="color:Red">Welcome to my custom Page Automated Deployment!!!</h1>
